@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class="mb-3">Order for: <%=@order.created_at.strftime("%a, %d %b %Y")%></h1>
+  <div class="row">
+    <div class="container">
+      <div class="row row-cols-1 g-4">
+      <% @total = 0 %>
+        <% @order.line_items.each do |item| %>
+          <div class="col-sm-12 col-xl-4 col-lg-6 col-md-12">
+
+            <div class="card mb-3 h-100">
+              <div class="row">
+
+                <div class="col-6">
+                  <div class="card-body">
+                    <%= cl_image_tag item.product.photos.first.key, class:"img-fluid ", crop: :fill %>
+                  </div>
+                </div>
+
+                <div class="col-6 text-center">
+                  <h4 class="card-title mt-3"><%= item.product.name %></h4>
+                  Quantity: <%= item.quantity %>
+                  <p class="card-body d-flex flex-column mt-auto text-muted">Total price: <%= item.product.price_cents * item.quantity %>₽</p>
+                  <% @total += item.product.price_cents * item.quantity %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Purchase #{@total}₽", @order.url, class: 'btn btn-outline-dark mt-3' %>
+</div>

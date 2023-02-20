@@ -1,0 +1,10 @@
+<div class="container mt-4">
+  <%= simple_form_for (@product) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price_cents %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.button :submit, "Create Product", class: 'btn btn-outline-success' %>
+  <% end %>
+  <%=link_to 'Back', :back, class: "btn btn-outline-dark mt-1" %>
+</div>

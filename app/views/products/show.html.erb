@@ -1,0 +1,33 @@
+<div data-controller="increments" class="container py-3">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-3">
+        <div class="row">
+          <div class="col-6">
+            <h1 class="m-3"><%= @product.name %></h1>
+            <p class="m-3"><%=@product.description  %></p>
+            <%= simple_form_for([@product, @line_item], url: product_line_items_path(@product) ) do |f| %>
+              <div class="col-6 m-3">
+                <%= f.input :quantity, input_html: {data: { target: "increments.quantity" }, value: 1} %>
+              </div>
+              <p class="m-3 text-muted">Price: ₽<span data-increments-target="price"><%=@product.price_cents%></span></p>
+              <%= f.submit "Add to cart", class: 'btn btn-outline-dark m-3' %>
+              <%= link_to "Back to shop", root_path, class: 'btn btn-outline-dark' %>
+            <% end %>
+            <% if current_user.try(:admin?) %>
+              <%= link_to "Edit", edit_product_path(@product), class: 'btn btn-outline-dark m-3' %>
+            <% end %>
+          </div>          
+            
+          <div class="col-6 text-center">
+            <% @product.photos.each do |photo|%>
+            <%= cl_image_tag photo.key, height: 500, width: 300, crop: :fill%>
+            <% end %>
+          <div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div> 
