@@ -140,7 +140,7 @@
 
 /*** Hero Header ***/
 .hero-header {
-    background-image: url('https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp');
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url('https://i.ibb.co/nPdwSK8/japan-bg.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
